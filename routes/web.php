@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,8 +12,18 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+
 
 Route::get('/', function () {
     return view('welcome');
 });
+*/
+
+Route::get('/' , function(){
+    return view('pagina.index');
+});
+
+//Rutas de autenticacion
+Route::get('/login' , [LoginController::class, 'form'])->name('login.form');
+
+//'Auth\LoginController@form')->name('login.form');
