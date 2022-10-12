@@ -137,18 +137,23 @@
               <!-- /Logo -->
               <h4 class="mb-2">Bievenido a Gama Torres 👋</h4>
               <p class="mb-4">Inicia sesión en tu cuenta y comienza la aventura.</p>
-
-              <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+            
+          <!--FORMULARIO PARA MOSTRAR Y LOGUEARSE {{ url('login') }}-->
+            <form class="user"method="POST" action="{{ route('login.verify') }}">
+            @csrf  
+                <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
                 <div class="mb-3">
-                  <label for="email" class="form-label">Correo</label>
+                  <label for="email" class="form-label">Correo Usuario</label>
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control form-control-user"
                     id="email"
-                    name="email-username"
+                    name="email"
                     placeholder="Ingrese su correo"
+                    value="{{old('email')}}"
                     autofocus
                   />
+                  {{ $errors->first("email") }}
                 </div>
                 <div class="mb-3 form-password-toggle">
                   <div class="d-flex justify-content-between">
@@ -166,6 +171,7 @@
                       placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                       aria-describedby="password"
                     />
+                    {{ $errors->first("password") }}
                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                   </div>
                 </div>
@@ -175,10 +181,22 @@
                     <label class="form-check-label" for="remember-me"> Recuerdame</label>
                   </div>
                 </div>
+                <!--BOTON INICIAR SESION-->
                 <div class="mb-3">
                   <button class="btn btn-primary d-grid w-100" type="submit">Iniciar Sesión</button>
                 </div>
+                <a  href ="{{ url ( '/' )}}" class="btn btn btn-user btn-block"> Volver</a>             
+                             
+            </form>
               </form>
+
+              <p class="text-center">
+					@if (session('mensaje'))
+					<center>
+						<p style="background-color: #ffc10757"> {{ session('mensaje') }} </p>
+					</center>
+					@endif
+				</p>
 
               <p class="text-center">
                 <span>Nuevo en la plataforma?</span>
