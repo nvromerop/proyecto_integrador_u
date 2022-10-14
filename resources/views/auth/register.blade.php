@@ -131,21 +131,22 @@
                       </g>
                     </svg>
                   </span>
-                  <span class="app-brand-text demo text-body fw-bolder">Sneat</span>
+                  <span class="app-brand-text demo text-body fw-bolder">GAMAR TORRES</span>
                 </a>
               </div>
               <!-- /Logo -->
-              <h4 class="mb-2">Adventure starts here 🚀</h4>
-              <p class="mb-4">Make your app management easy and fun!</p>
+              <h4 class="mb-2">Bievenido a Gama Torres 👋
+</h4>
+              <p class="mb-4">¡Haga que la administración de su aplicación sea fácil y divertida!</p>
 
               <form action="/register" id="formAuthentication" class="mb-3" action="index.html" method="POST">
                 @csrf
                 <div class="mb-3">
-                  <label for="email" class="form-label">Email</label>
+                  <label for="email" class="form-label">Correo Elecronico</label>
                   <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" />
                 </div>
                 <div class="mb-3 form-password-toggle">
-                  <label class="form-label" for="password">Password</label>
+                  <label class="form-label" for="password">Contraseña</label>
                   <div class="input-group input-group-merge">
                     <input
                       type="password"
@@ -177,8 +178,8 @@
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" />
                     <label class="form-check-label" for="terms-conditions">
-                      I agree to
-                      <a href="javascript:void(0);">privacy policy & terms</a>
+                      Acepto
+                      <a href="javascript:void(0);">la politica de privacidad y lo terminos</a>
                     </label>
                   </div>
                 </div>
@@ -186,9 +187,17 @@
               </form>
 
               <p class="text-center">
-                <span>Already have an account?</span>
-                <a href="auth-login-basic.html">
-                  <span>Sign in instead</span>
+					@if (session('mensaje'))
+					<center>
+						<p style="background-color: #ffc10757"> {{ session('mensaje') }} </p>
+					</center>
+					@endif
+				</p>
+
+              <p class="text-center">
+                <span>¿Ya tienes una cuenta?</span>
+                <a href="/login">
+                  <span>Iniciar sesión en su lugar</span>
                 </a>
               </p>
             </div>
@@ -199,16 +208,6 @@
     </div>
 
     <!-- / Content -->
-
-    <div class="buy-now">
-      <a
-        href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/"
-        target="_blank"
-        class="btn btn-danger btn-buy-now"
-        >Upgrade to Pro</a
-      >
-    </div>
-
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
     <script src="../assets/vendor/libs/jquery/jquery.js"></script>

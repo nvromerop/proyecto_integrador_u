@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracs\Validation\Factory as ValidationFactory;
+use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 use App\Models\User;
 
 class LoginRequest extends FormRequest
@@ -34,7 +34,7 @@ class LoginRequest extends FormRequest
     }
 
     //Metodos directamente para llamar al controlador
-    public function getCredenciales(){
+    public function getCredencials(){
         $email = $this->get('email');
 
         if($this->isEmail($email)){

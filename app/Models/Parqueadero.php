@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Parqueadero extends Model
 {
-    use HasFactory;
+    //Vincular modelo atributo
+    protected $table="parqueadero";
+    //Establecer la PK para la entidad (por defecto: id)
+    protected $primaryKey ="id_parq";
+    //Omitir campos de auditoria
+    public $timestamps = false;
 }

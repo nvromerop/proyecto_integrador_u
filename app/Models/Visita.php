@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Visita extends Model
 {
-    use HasFactory;
+     //Vincular modelo atributo
+     protected $table="visita";
+     //Establecer la PK para la entidad (por defecto: id)
+     protected $primaryKey ="id_regvisi";
+     //Omitir campos de auditoria
+     public $timestamps = false;
 }

@@ -54,7 +54,7 @@
       <a href="index.html" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1>GamaTorres<span>.</span></h1>
+        <h1>Gama Torres<span>.</span></h1>
       </a>
 
       <nav id="navbar" class="navbar">
@@ -70,7 +70,7 @@
         <i class="bi bi-list mobile-nav-toggle d-none"></i>
       </nav><!-- .navbar -->
 
-      <a class="btn-getstarted scrollto">Registrarse</a>
+      <a class="btn-getstarted scrollto" href="{{route('register.form')}}">Registrarse</a>
       <a class="btn-getstarted scrollto" href="{{route('login.form')}}">Ingresar</a>
       
 
@@ -160,7 +160,7 @@
             <div class="service-item position-relative">
               <div class="icon"><i class="bi bi-activity icon"></i></div>
               <h4><a href="" class="stretched-link">Administración</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+              <p>La administración es muy importante para el conjunto residencial.</p>
             </div>
           </div><!-- End Service Item -->
 
@@ -168,7 +168,7 @@
             <div class="service-item position-relative">
               <div class="icon"><i class="bi bi-bounding-box-circles icon"></i></div>
               <h4><a href="" class="stretched-link">Apartamentos</a></h4>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+              <p>Hacemos control y segumineto a nuestros residentes y familiares.</p>
             </div>
           </div><!-- End Service Item -->
 
@@ -176,15 +176,15 @@
             <div class="service-item position-relative">
               <div class="icon"><i class="bi bi-calendar4-week icon"></i></div>
               <h4><a href="" class="stretched-link">Visitantes</a></h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+              <p>Para nosotros en muy importante tener el control de los visitantes.</p>
             </div>
           </div><!-- End Service Item -->
 
           <div class="col-xl-3 col-md-6 d-flex"" data-aos-delay="600">
             <div class="service-item position-relative">
               <div class="icon"><i class="bi bi-broadcast icon"></i></div>
-              <h4><a href="" class="stretched-link">Nemo Enim</a></h4>
-              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+              <h4><a href="" class="stretched-link">Parqueaderos</a></h4>
+              <p>Tu vehiculo esta seguro, contamos con vigilantes especializados.</p>
             </div>
           </div><!-- End Service Item -->
 
@@ -215,8 +215,8 @@
                 <span class="post-date">Jueves, Septiembre 12</span>
                 <span class="post-author"> / Julia Parker</span>
               </div>
-              <h3 class="post-title">Eum ad dolor et. Autem aut fugiat debitis voluptatem consequuntur sit</h3>
-              <p>Illum voluptas ab enim placeat. Adipisci enim velit nulla. Vel omnis laudantium. Asperiores eum ipsa est officiis. Modi cupiditate exercitationem qui magni est...</p>
+              <h3 class="post-title">La administración logro construir en parqueadero de visitantes</h3>
+              <p>Nuestros residentes tendran la oportunidad de traer a sus familiares, amigos y compañeros a disfrutar de un agradable rato dejando sus vehiculos a salvo...</p>
             </div>
           </div>
 
@@ -224,11 +224,11 @@
             <div class="post-box">
               <div class="post-img"><img src="assets/img/blog/blog-2.jpg" class="img-fluid" alt=""></div>
               <div class="meta">
-                <span class="post-date">Fri, September 05</span>
-                <span class="post-author"> / Mario Douglas</span>
+                <span class="post-date">Martes, Octubre 05</span>
+                <span class="post-author"> / Maria Rojas</span>
               </div>
-              <h3 class="post-title">Et repellendus molestiae qui est sed omnis voluptates magnam</h3>
-              <p>Voluptatem nesciunt omnis libero autem tempora enim ut ipsam id. Odit quia ab eum assumenda. Quisquam omnis aliquid necessitatibus tempora consectetur doloribus...</p>
+              <h3 class="post-title">Adecuación sala de Espera</h3>
+              <p>Se hicieron las adecuaciones de la sala de espero principal y se compraron muebles para una mejor comodidad de los visitantes...</p>
             </div>
           </div>
 
@@ -236,11 +236,11 @@
             <div class="post-box">
               <div class="post-img"><img src="assets/img/blog/blog-3.jpg" class="img-fluid" alt=""></div>
               <div class="meta">
-                <span class="post-date">Tue, July 27</span>
-                <span class="post-author"> / Lisa Hunter</span>
+                <span class="post-date">Lunes, Octubre 14</span>
+                <span class="post-author"> / Lisa Martinez</span>
               </div>
-              <h3 class="post-title">Quia assumenda est et veritatis aut quae</h3>
-              <p>Quia nam eaque omnis explicabo similique eum quaerat similique laboriosam. Quis omnis repellat sed quae consectetur magnam veritatis dicta nihil...</p>
+              <h3 class="post-title">Mantenimiento parqueaderos</h3>
+              <p>Se realizaron la revisión de las luces, mantenimiento de cámaras, pintura de señalización... </p>
             </div>
           </div>
 
@@ -329,7 +329,7 @@
 
         <div class="section-header">
           <h2>Contactanos</h2>
-          <p>Ea vitae aspernatur deserunt voluptatem impedit deserunt magnam occaecati dssumenda quas ut ad dolores adipisci aliquam.</p>
+          <p>Nuestro sitio web tiene como propósito, mejorar la comunicación y brindar información de forma permanente a la comunidad.</p>
         </div>
 
       </div>
@@ -345,30 +345,30 @@
           <div class="col-lg-4">
 
             <div class="info">
-              <h3>Get in touch</h3>
-              <p>Et id eius voluptates atque nihil voluptatem enim in tempore minima sit ad mollitia commodi minus.</p>
+              <h3>Contacto</h3>
+              <p>Para nosotros es un gusto atender sus solicitudes.</p>
 
               <div class="info-item d-flex">
                 <i class="bi bi-geo-alt flex-shrink-0"></i>
                 <div>
-                  <h4>Location:</h4>
-                  <p>A108 Adam Street, New York, NY 535022</p>
+                  <h4>Dirección:</h4>
+                  <p>Av. 116 #122 -Q12</p>
                 </div>
               </div><!-- End Info Item -->
 
               <div class="info-item d-flex">
                 <i class="bi bi-envelope flex-shrink-0"></i>
                 <div>
-                  <h4>Email:</h4>
-                  <p>info@example.com</p>
+                  <h4>Correo:</h4>
+                  <p>gamatorres@gmail.com</p>
                 </div>
               </div><!-- End Info Item -->
 
               <div class="info-item d-flex">
                 <i class="bi bi-phone flex-shrink-0"></i>
                 <div>
-                  <h4>Call:</h4>
-                  <p>+1 5589 55488 55</p>
+                  <h4>Celular:</h4>
+                  <p>+57 3156278822</p>
                 </div>
               </div><!-- End Info Item -->
 
@@ -380,24 +380,24 @@
             <form action="forms/contact.php" method="post" role="form" class="php-email-form">
               <div class="row">
                 <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Nombre" required>
                 </div>
                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Correo" required>
                 </div>
               </div>
               <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Asunto correo" required>
               </div>
               <div class="form-group mt-3">
-                <textarea class="form-control" name="message" placeholder="Message" required></textarea>
+                <textarea class="form-control" name="message" placeholder="Mensaje" required></textarea>
               </div>
               <div class="my-3">
-                <div class="loading">Loading</div>
+                <div class="loading">Cargando</div>
                 <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
+                <div class="sent-message">Su mensaje ha sido enviado. Gracias!</div>
               </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
+              <div class="text-center"><button type="submit">Enviar Mensaje</button></div>
             </form>
           </div><!-- End Contact Form -->
 

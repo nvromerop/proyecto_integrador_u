@@ -17,6 +17,6 @@ class RegisterController extends Controller
     //Creamos un objeto request que me permita manipular la solucitud
     public function register(RegisterRequest $request){
        $user = User::create($request->validated());
-       return redirect('/login')->with('success' , 'Cuenta creada exitosamente');
+       return redirect('/login')->with('mensaje' , 'Cuenta creada exitosamente');
     }
 }

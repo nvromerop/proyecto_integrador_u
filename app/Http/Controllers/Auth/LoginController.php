@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Usuario;
-use App\Http\Requests\LoginRequest;
 
 //Modelos necesarios
 
@@ -23,17 +23,22 @@ class LoginController extends Controller
 
     public function login(LoginRequest  $request){
 
-        $credenciales =$request->getCredencials();
-           
-        if(Auth::validate($credenciales)) {
-            //usuario autenticado
-            return redirect()->to('/login')->withErrors('auth.failed');
+        $credencials =$request->getCredencials();
 
-        }else{
+        if(!Auth::validate($credencials)) {
             //usuario no autenticado
-            return redirect()->route( 'login.form' )
-            ->with('mensaje', "Usuario NO NO NO reconocido");
-        }var_dump($request->all());
+            return redirect()->to('/login')->withErrors('auth.failed')->with('mensaje', "Usuario Incorrecto");
+        }
+        $user = Auth::getProvider()->retrieveByCredentials($credencials);
+        
+        //funcion que nos permite un login y crear sesiones
+        Auth::login($user);
+
+        return $this->authenticated($request , $user);
+    }
+
+    public function authenticated(Request $request , $user){
+        return redirect('/home');
     }
 
     //accion para cerrar sesion

@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vehiculo extends Model
 {
-    use HasFactory;
+    //Vincular modelo atributo
+    protected $table="vehiculo";
+    //Establecer la PK para la entidad (por defecto: id)
+    protected $primaryKey ="id_placa";
+    //Omitir campos de auditoria
+    public $timestamps = false;
 }

@@ -131,7 +131,7 @@
                       </g>
                     </svg>
                   </span>
-                  <span class="app-brand-text demo text-body fw-bolder">GAMA</span>
+                  <span class="app-brand-text demo text-body fw-bolder">GAMA TORRES</span>
                 </a>
               </div>
               <!-- /Logo -->
@@ -139,9 +139,8 @@
               <p class="mb-4">Inicia sesión en tu cuenta y comienza la aventura.</p>
             
           <!--FORMULARIO PARA MOSTRAR Y LOGUEARSE {{ url('login') }}-->
-            <form class="user"method="POST" action="{{ route('login.verify') }}">
+            <form action="/login" class="user" method="POST" id="formAuthentication"  class="mb-3" >
             @csrf  
-                <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
                 <div class="mb-3">
                   <label for="email" class="form-label">Correo Usuario</label>
                   <input
@@ -153,7 +152,7 @@
                     value="{{old('email')}}"
                     autofocus
                   />
-                  {{ $errors->first("email") }}
+            
                 </div>
                 <div class="mb-3 form-password-toggle">
                   <div class="d-flex justify-content-between">
@@ -171,7 +170,6 @@
                       placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                       aria-describedby="password"
                     />
-                    {{ $errors->first("password") }}
                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                   </div>
                 </div>
@@ -183,13 +181,11 @@
                 </div>
                 <!--BOTON INICIAR SESION-->
                 <div class="mb-3">
-                  <button class="btn btn-primary d-grid w-100" type="submit">Iniciar Sesión</button>
+                  <button value="Login" class="btn btn-primary d-grid w-100" type="submit">Iniciar Sesión</button>
                 </div>
                 <a  href ="{{ url ( '/' )}}" class="btn btn btn-user btn-block"> Volver</a>             
                              
             </form>
-              </form>
-
               <p class="text-center">
 					@if (session('mensaje'))
 					<center>
@@ -200,7 +196,7 @@
 
               <p class="text-center">
                 <span>Nuevo en la plataforma?</span>
-                <a href="auth-register-basic.html">
+                <a href="/register">
                   <span>Crea una cuenta</span>
                 </a>
               </p>
