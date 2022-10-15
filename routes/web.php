@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\VisitanteController;
 use App\Http\Requests\RegisterRequest;
 use App\Model\User;
 
@@ -56,6 +57,13 @@ Route::post('login' , [LoginController::class, 'login'])->name('login.verify');
 Route::get('logout' , [LoginController::class, 'logout'])->name('logout.auth');
 Route::get('perfil' , [LoginController::class, 'perfil']);
 
+// rutas para visitantes
+Route::get('/visitantes', [VisitanteController::class, 'index']);
+Route::get('visitantes/create', [VisitanteController::class, 'create'])->name('visitante.create');
+Route::post('visitantes/store', [VisitanteController::class, 'store'])->name('visitante.store');
+// Route::post('visitantes/store', [VisitanteController::class, 'destroy'])->name('visitante.destroy');
+// Route::post('visitantes/store', [VisitanteController::class, 'show'])->name('visitante.show');
+// Route::post('visitantes/store', [VisitanteController::class, 'edit'])->name('visitante.edit'); 
 
 //Rutas para cada una de las acciones de correos
 Route::get('confirmar-correo', 'Auth\ResetPasswordController@emailform');
