@@ -1,4 +1,4 @@
-@extends('visitante.layouts')
+@extends('layouts.layouts')
  
 @section('content')
     <div class="row">
@@ -11,15 +11,15 @@
     </div>
     <table class="table table-bordered">
         <tr>
-            <th>First Name:</th>
-            <td>{{$visitante->id_regvisi}}</td>
+            <th>Fecha Registro:</th>
+            <td>{{$visitante->fechaRegistro}}</td>
         </tr>
         <tr>
-            <th>Last Name:</th>
+            <th>Hora de ingreso:</th>
             <td>{{$visitante->horaIngreso}}</td>
         </tr>
         <tr>
-            <th>Address:</th>
+            <th>Hora de salida:</th>
             <td>{{$visitante->horaSalida}}</td>
         </tr>
  

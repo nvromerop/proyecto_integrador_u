@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Requests\RegisterRequest;
 use App\Model\User;
+use App\Http\Controllers\VisitanteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,4 +56,11 @@ Route::get('/home' , [HomeController::class, 'index']);
 //Pagina para cerra sesion
 Route::get('/logout' , [LogoutController::class, 'logout']);
 
-
+// rutas para visitantes
+Route::get('/visitantes', [VisitanteController::class, 'index']);
+Route::get('visitantes/create', [VisitanteController::class, 'create'])->name('visitante.create');
+Route::post('visitantes/store', [VisitanteController::class, 'store'])->name('visitante.store');
+Route::delete('visitantes/destroy/{visitante}', [VisitanteController::class, 'destroy'])->name('visitante.destroy');
+Route::get('/visitantes/view/{visitante}', [VisitanteController::class, 'show'])->name('visitante.show');
+Route::get('/visitantes/edit/{visitante}', [VisitanteController::class, 'edit'])->name('visitante.edit'); 
+Route::post('visitantes/update', [VisitanteController::class, 'update'])->name('visitante.update');

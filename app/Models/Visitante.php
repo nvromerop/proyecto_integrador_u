@@ -17,7 +17,7 @@ class Visitante extends Model
 
     use HasFactory;
     protected $fillable = [
-        'fechaRegistro','horaIngreso', 'horaSalida'
+        'fechaRegistro','horaIngreso', 'horaSalida', 'vehiculo'
     ];
  
 }

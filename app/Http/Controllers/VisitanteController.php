@@ -16,7 +16,7 @@ class VisitanteController extends Controller
     {
         // $visitantes = Visitante::all();
         // return view('visitante.list', compact('visitantes',$visitantes));
-        $visitantes = \App\Models\Visitante::paginate(3);
+        $visitantes = \App\Models\Visitante::paginate(2);
        //mostrar una vista con los empleados
        //test 2
        return view('visitante.list')->with("visitantes", $visitantes);
@@ -41,19 +41,20 @@ class VisitanteController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'txtFirstName'=>'required',
-            'txtLastName'=> 'required',
-            'txtAddress' => 'required'
+            'fechaRegistro'=>'required',
+            'horaIngreso'=> 'required'
+            // 'txtAddress' => 'required'
         ]);
  
         $visitante = new Visitante([
-            'first_name' => $request->get('txtFirstName'),
-            'last_name'=> $request->get('txtLastName'),
-            'address'=> $request->get('txtAddress')
+            'fechaRegistro' => $request->get('fechaRegistro'),
+            'horaIngreso'=> $request->get('horaIngreso'),
+            'horaSalida'=> $request->get('horaSalida'),
+            'vehiculo'=> $request->get('vehiculo')
         ]);
  
         $visitante->save();
-        return redirect('/student')->with('success', 'Student has been added');
+        return redirect('/visitantes')->with('success', 'Student has been added');
     }
 
     /**
@@ -76,7 +77,7 @@ class VisitanteController extends Controller
      */
     public function edit(Visitante $visitante)
     {
-        //
+        return view('visitante.edit',compact('visitante'));
     }
 
     /**
@@ -88,7 +89,23 @@ class VisitanteController extends Controller
      */
     public function update(Request $request, Visitante $visitante)
     {
-        //
+        $request->validate([
+            'fechaRegistro'=>'required',
+            'horaIngreso'=> 'required'
+            // 'txtAddress' => 'required'
+
+        ]);
+ 
+ 
+        $visitante = Visitante::find($visitante);
+        $visitante->fechaRegistro = $request->get('fechaRegistro');
+        $visitante->horaIngreso = $request->get('horaIngreso');
+        $visitante->horaSalida = $request->get('horaSalida');
+ 
+        $visitante->update();
+ 
+        return redirect('/visitantes')->with('success', 'visitante updated successfully');
+    
     }
 
     /**
