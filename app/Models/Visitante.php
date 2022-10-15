@@ -7,11 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Visitante extends Model
 {
-     //Vincular modelo atributo
-     protected $table="visitante";
-     //Establecer la PK para la entidad (por defecto: id)
-     protected $primaryKey ="id_visi";
-     //Omitir campos de auditoria
-     public $timestamps = false;
+     //vvincular modelo atributo
+    protected $table="visita";
+    //establecer la PK para la entidad (por defecto: id)
+    protected $primaryKey ="id_regvisi";
+
+    //omitir campos de auditoria
+    public $timestamps = false;
+
+    use HasFactory;
+    protected $fillable = [
+        'fechaRegistro','horaIngreso', 'horaSalida'
+    ];
  
 }
