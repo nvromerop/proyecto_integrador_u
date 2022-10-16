@@ -27,7 +27,7 @@ class LoginController extends Controller
 
         if(!Auth::validate($credencials)) {
             //usuario no autenticado
-            return redirect()->to('/login')->withErrors('auth.failed')->with('mensaje', "Usuario Incorrecto");
+            return redirect()->to('/login')->withErrors('Correo y contraseña son incorrectos')->with('mensaje', "Correo y contraseña son incorrectos");
         }
         $user = Auth::getProvider()->retrieveByCredentials($credencials);
         

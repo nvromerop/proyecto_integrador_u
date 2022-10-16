@@ -51,9 +51,9 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::get('/login' , [LoginController::class, 'show'])->name('login.form');
 
 
-//Pagina cuando el usuario se autentica
+//Rura cuando el usuario se autentica
 Route::get('/home' , [HomeController::class, 'index']);
-//Pagina para cerra sesion
+//Ruta para cerra sesion
 Route::get('/logout' , [LogoutController::class, 'logout']);
 
 // rutas para visitantes

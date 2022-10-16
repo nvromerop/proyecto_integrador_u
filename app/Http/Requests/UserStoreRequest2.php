@@ -23,6 +23,8 @@ class UserStoreRequest2 extends FormRequest
      */
     public function rules()
     {
+        //Nos va a permitir autorizar o no que una solicitud avance: 
+            //validar que los campos cumplen con algo especifico
         return [
 
             'email' => 'required|email',
