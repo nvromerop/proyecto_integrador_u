@@ -508,24 +508,7 @@
                   , made with ❤️ by
                   <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
                 </div>
-                <div>
-                  <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
-                  <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
-
-                  <a
-                    href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-                    target="_blank"
-                    class="footer-link me-4"
-                    >Documentation</a
-                  >
-
-                  <a
-                    href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                    target="_blank"
-                    class="footer-link me-4"
-                    >Support</a
-                  >
-                </div>
+               
               </div>
             </footer>
             <!-- / Footer -->
@@ -578,6 +561,7 @@
 
 		<!-- Page JS -->
 		<script src="../assets/js/dashboards-analytics.js"></script>
+		<!-- <script src="../visitante/visitantes.js"></script> -->
 
 		<!-- Place this tag in your head or just before your close body tag. -->
 		<script async defer src="https://buttons.github.io/buttons.js"></script>
