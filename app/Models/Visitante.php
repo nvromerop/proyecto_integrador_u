@@ -17,7 +17,11 @@ class Visitante extends Model
 
     use HasFactory;
     protected $fillable = [
-        'fechaRegistro','horaIngreso', 'horaSalida', 'vehiculo'
+        'fechaRegistro','horaIngreso', 'horaSalida', 'vehiculo', 'idVisitante', 'idApto', 'idPlaca'
     ];
  
+    public function visitantesR()
+   {
+      return $this->hasMany('App\Visita', 'idVisitante');
+   }
 }

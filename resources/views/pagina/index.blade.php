@@ -10,8 +10,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="assets/img/edificio.png" rel="icon">
+  <link href="assets/img/edificio.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,57 +48,66 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top" data-scrollto-offset="0">
+  <header id="header" class="header fixed-top sticked" data-scrollto-offset="0">
     <div class="container-fluid d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
+      <a href="/" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1>Gama Torres<span>.</span></h1>
+
+        <!-- Logo -->
+        <div class="app-brand justify-content-center">
+          <a href="/" class="app-brand-link gap-2">
+            <a href="/" class="app-brand-link">
+              <span class="app-brand-logo demo">
+                <img src="assets/img/Logo2.png" style="width:65%; padding-top: 4px; margin-left: 5px; margin-top: 4px;">
+              </span>
+            </a>
+            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+              <i class="bx bx-chevron-left bx-sm align-middle"></i>
+            </a>
+
+          </a>
+        </div>
+
       </a>
 
       <nav id="navbar" class="navbar">
         <ul>
 
-          <li><a class="nav-link scrollto" href="index.#about">Inicio</a></li>
-          <li><a class="nav-link scrollto" href="index.#services">Servicios</a></li>
-          <li><a class="nav-link scrollto" href="index.#portfolio">Portafolio</a></li>
-          <li><a class="nav-link scrollto" href="index.#team">Equipo</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a class="nav-link scrollto" href="index.html#contact">Contacto</a></li>
+          <li><a class="nav-link scrollto" href="{{ url ( '/' )}}">Inicio</a></li>
+          <li><a class="nav-link scrollto" href="{{ url ( '/' )}}">Módulos</a></li>
+          <li><a class="nav-link scrollto" href="{{ url ( '/' )}}">Sobre Nosotros</a></li>
+          <li><a class="nav-link scrollto" href="{{ url ( '/' )}}">Blog</a></li>
+          <li><a class="nav-link scrollto" href="{{ url ( '/' )}}">Servicios</a></li>
+          <li><a href="blog.html">Preguntas</a></li>
+          <li><a class="nav-link scrollto" href="{{ url ( '/' )}}">Contacto</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle d-none"></i>
       </nav><!-- .navbar -->
 
-      <a class="btn-getstarted scrollto" href="{{route('register.form')}}">Registrarse</a>
-      <a class="btn-getstarted scrollto" href="{{route('login.form')}}">Ingresar</a>
-      
+      <a class="btn-getstarted scrollto" href="{{route('login.form')}}">Empezar</a>
+
 
     </div>
   </header><!-- End Header -->
-  
-<main>
 
-<!-- ======= Hero Section ======= -->
-  <section id="hero" class="hero carousel  carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+  <section id="hero-fullscreen" class="hero-fullscreen d-flex align-items-center">
+    <div class="container d-flex flex-column align-items-center position-relative" data-aos=" ">
+      <h2>Bienvenido a <span>GamaTorres</span></h2>
+      <center>
+        <p>
+          En esta sección mantenemos informados a los residentes del Conjunto Residencial Gama Torres de la gestión del Consejo de Administración y las decisiones que se toman en este órgano.
 
-    <div class="carousel-item active">
-      <div class="container">
-        <div class="row justify-content-center gy-6">
-
-          <div class="col-lg-5 col-md-8">
-            <img src="assets/img/hero-carousel/hero-carousel-1.svg" alt="" class="img-fluid img">
-          </div>
-
-          <div class="col-lg-9 text-center">
-            <h2>Bienvenido a Gama Torres</h2>
-            <p>Gama es una herramienta web para cualquier dispositivo, donde los residentes pueden participar, gestionar y comunicar sus requerimientos a la administración y entre los residentes.
-              </p>
-          </div>
-
-        </div>
+        </p>
+      </center>
+      <div class="d-flex">
+        <a href="https://www.youtube.com/watch?v=cUcEmLdltRM" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Ver Video</span></a>
       </div>
-    </div><!-- End Carousel Item -->
+    </div>
+  </section>
+
+  <main>
 
     <div class="carousel-item">
       <div class="container">
@@ -146,25 +155,25 @@
 
     <ol class="carousel-indicators"></ol>
 
-  </section><!-- End Hero Section -->
+    </section><!-- End Hero Section -->
 
-  <main id="main">
+    <main id="main">
 
-    <!-- ======= Featured Services Section ======= -->
-    <section id="featured-services" class="featured-services">
-      <div class="container">
+      <!-- ======= Featured Services Section ======= -->
+      <section id="featured-services" class="featured-services">
+        <div class="container">
 
-        <div class="row gy-4">
+          <div class="row gy-4">
 
-          <div class="col-xl-3 col-md-6 d-flex"">
-            <div class="service-item position-relative">
+            <div class="col-xl-3 col-md-6 d-flex"">
+            <div class=" service-item position-relative">
               <div class="icon"><i class="bi bi-activity icon"></i></div>
               <h4><a href="" class="stretched-link">Administración</a></h4>
               <p>La administración es muy importante para el conjunto residencial.</p>
             </div>
           </div><!-- End Service Item -->
 
-          <div class="col-xl-3 col-md-6 d-flex"" data-aos-delay="200">
+          <div class="col-xl-3 col-md-6 d-flex"" data-aos-delay=" 200">
             <div class="service-item position-relative">
               <div class="icon"><i class="bi bi-bounding-box-circles icon"></i></div>
               <h4><a href="" class="stretched-link">Apartamentos</a></h4>
@@ -172,7 +181,7 @@
             </div>
           </div><!-- End Service Item -->
 
-          <div class="col-xl-3 col-md-6 d-flex"" data-aos-delay="400">
+          <div class="col-xl-3 col-md-6 d-flex"" data-aos-delay=" 400">
             <div class="service-item position-relative">
               <div class="icon"><i class="bi bi-calendar4-week icon"></i></div>
               <h4><a href="" class="stretched-link">Visitantes</a></h4>
@@ -180,7 +189,7 @@
             </div>
           </div><!-- End Service Item -->
 
-          <div class="col-xl-3 col-md-6 d-flex"" data-aos-delay="600">
+          <div class="col-xl-3 col-md-6 d-flex"" data-aos-delay=" 600">
             <div class="service-item position-relative">
               <div class="icon"><i class="bi bi-broadcast icon"></i></div>
               <h4><a href="" class="stretched-link">Parqueaderos</a></h4>
@@ -190,141 +199,333 @@
 
         </div>
 
-      </div>
-    </section><!-- End Featured Services Section -->
-
-
-
-    
-    <!-- ======= Recent Blog Posts Section ======= -->
-    <section id="recent-blog-posts" class="recent-blog-posts">
-
-      <div class="container" >
-
-        <div class="section-header">
-          <h2>Blog</h2>
-          <p>Publicaciones recientes de nuestro Blog</p>
         </div>
+      </section><!-- End Featured Services Section -->
 
-        <div class="row">
 
-          <div class="col-lg-4" data-aos-delay="200">
-            <div class="post-box">
-              <div class="post-img"><img src="assets/img/blog/blog-1.jpg" class="img-fluid" alt=""></div>
-              <div class="meta">
-                <span class="post-date">Jueves, Septiembre 12</span>
-                <span class="post-author"> / Julia Parker</span>
-              </div>
-              <h3 class="post-title">La administración logro construir en parqueadero de visitantes</h3>
-              <p>Nuestros residentes tendran la oportunidad de traer a sus familiares, amigos y compañeros a disfrutar de un agradable rato dejando sus vehiculos a salvo...</p>
-            </div>
+      <!-- ======= Services Section ======= -->
+      <section id="services" class="services">
+        <div class="container" data-aos="">
+
+          <div class="section-header">
+            <h2>Gama Torres</h2>
           </div>
 
-          <div class="col-lg-4"  data-aos-delay="400">
-            <div class="post-box">
-              <div class="post-img"><img src="assets/img/blog/blog-2.jpg" class="img-fluid" alt=""></div>
-              <div class="meta">
-                <span class="post-date">Martes, Octubre 05</span>
-                <span class="post-author"> / Maria Rojas</span>
+          <div class="row gy-5">
+
+            <div class="col-xl-4 col-md-6" data-aos="" data-aos-delay="300">
+              <div class="service-item">
+                <div class="img">
+                  <img src="" class="img-fluid" alt="">
+                </div>
+                <div class="details position-relative">
+                  <a href="#" class="stretched-link">
+                    <h3>Misión</h3>
+                  </a>
+                  <p>
+                    Conformar un espacio de vivienda organizado y en donde se busca propiciar espacios de comunicación, sana convivencia y en donde reine la armonía, la paz, el respeto y la equidad para todos los propietarios siguiendo los lineamientos establecidos en nuestro reglamento con el fin de lograr un desarrollo humano sostenible.
+                  </p>
+                </div>
               </div>
-              <h3 class="post-title">Adecuación sala de Espera</h3>
-              <p>Se hicieron las adecuaciones de la sala de espero principal y se compraron muebles para una mejor comodidad de los visitantes...</p>
+            </div><!-- End Service Item -->
+
+            <div class="col-xl-4 col-md-6" data-aos="" data-aos-delay="200">
+              <div class="service-item">
+                <div class="img">
+                  <img src="assets/img/services-101.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="details position-relative">
+                  <a href="#" class="stretched-link">
+                    <h3></h3>
+                  </a>
+                  <p>Para nosotros es muy importante la misión y visión</p>
+                </div>
+              </div>
+            </div><!-- End Service Item -->
+
+            <div class="col-xl-4 col-md-6" data-aos="" data-aos-delay="400">
+              <div class="service-item">
+                <div class="img">
+                  <img src="" class="img-fluid" alt="">
+                </div>
+                <div class="details position-relative">
+                  <a href="#" class="stretched-link">
+                    <h3>Visión</h3>
+                  </a>
+                  <p>
+                    Nos proyectamos a ser una copropiedad reconocida por su belleza, armonía con la naturaleza, perfecta convivencia e integración entre sus habitantes con valores y principios orientados a lo que es justo para todos, fortalecidos en la confianza y el trabajo en equipo que fomente los derechos fundamentales
+                  </p>
+                </div>
+              </div>
+            </div><!-- End Service Item -->
+          </div>
+        </div>
+      </section><!-- End Services Section -->
+
+
+      <!-- ======= Call To Action Section ======= -->
+      <section id="cta" class="cta">
+        <div class="container" data-aos=" ">
+
+          <div class="row g-5">
+
+            <div class="col-lg-8 col-md-6 content d-flex flex-column justify-content-center order-last order-md-first">
+              <h3>Consejo de Administración del <em>Conjunto Residencial</em> </h3>
+              <p>
+                La ley 675 en su artículo 55 manifiesta que: Funciones: Al Consejo de administración le corresponderá tomar las determinaciones necesarias en orden a que la personería jurídica cumpla sus fines, de acuerdo con lo previsto en el reglamento de propiedad horizontal.
+              </p>
+              <a class="cta-btn align-self-start" href="#">Llamado a la acción</a>
             </div>
+
+            <div class="col-lg-4 col-md-6 order-first order-md-last d-flex align-items-center">
+              <div class="img">
+                <img src="assets/img/cta1.jpg" alt="" class="img-fluid">
+              </div>
+            </div>
+
           </div>
 
-          <div class="col-lg-4"  data-aos-delay="600">
-            <div class="post-box">
-              <div class="post-img"><img src="assets/img/blog/blog-3.jpg" class="img-fluid" alt=""></div>
-              <div class="meta">
-                <span class="post-date">Lunes, Octubre 14</span>
-                <span class="post-author"> / Lisa Martinez</span>
+        </div>
+      </section><!-- End Call To Action Section -->
+
+      <!-- ======= Recent Blog Posts Section ======= -->
+      <section id="recent-blog-posts" class="recent-blog-posts">
+
+        <div class="container">
+
+          <div class="section-header">
+            <h2>Blog</h2>
+            <p>Publicaciones recientes de nuestro Blog</p>
+          </div>
+
+          <div class="row">
+
+            <div class="col-lg-4" data-aos-delay="200">
+              <div class="post-box">
+                <div class="post-img"><img src="assets/img/blog/blog-1.jpg" class="img-fluid" alt=""></div>
+                <div class="meta">
+                  <span class="post-date">Jueves, Septiembre 12</span>
+                  <span class="post-author"> / Julia Parker</span>
+                </div>
+                <h3 class="post-title">La administración logro construir en parqueadero de visitantes</h3>
+                <p>Nuestros residentes tendran la oportunidad de traer a sus familiares, amigos y compañeros a disfrutar de un agradable rato dejando sus vehiculos a salvo...</p>
               </div>
-              <h3 class="post-title">Mantenimiento parqueaderos</h3>
-              <p>Se realizaron la revisión de las luces, mantenimiento de cámaras, pintura de señalización... </p>
             </div>
+
+            <div class="col-lg-4" data-aos-delay="400">
+              <div class="post-box">
+                <div class="post-img"><img src="assets/img/blog/blog-2.jpg" class="img-fluid" alt=""></div>
+                <div class="meta">
+                  <span class="post-date">Martes, Octubre 05</span>
+                  <span class="post-author"> / Maria Rojas</span>
+                </div>
+                <h3 class="post-title">Adecuación sala de Espera</h3>
+                <p>Se hicieron las adecuaciones de la sala de espero principal y se compraron muebles para una mejor comodidad de los visitantes...</p>
+              </div>
+            </div>
+
+            <div class="col-lg-4" data-aos-delay="600">
+              <div class="post-box">
+                <div class="post-img"><img src="assets/img/blog/blog-3.jpg" class="img-fluid" alt=""></div>
+                <div class="meta">
+                  <span class="post-date">Lunes, Octubre 14</span>
+                  <span class="post-author"> / Lisa Martinez</span>
+                </div>
+                <h3 class="post-title">Mantenimiento parqueaderos</h3>
+                <p>Se realizaron la revisión de las luces, mantenimiento de cámaras, pintura de señalización... </p>
+              </div>
+            </div>
+
           </div>
 
         </div>
 
-      </div>
+      </section><!-- End Recent Blog Posts Section -->
 
-    </section><!-- End Recent Blog Posts Section -->
+      <!-- ======= Services Section ======= -->
+      <section id="services" class="services">
+        <div class="container" data-aos="">
 
+          <div class="section-header">
+            <h2>Nuestros Servicios</h2>
+            <p>Toda la información del conjunto a tu alcance.</p>
+          </div>
 
-    <!-- ======= Team Section ======= -->
-    <section id="team" class="team">
-      <div class="container" ">
+          <div class="row gy-5">
 
-        <div class="section-header">
-          <h2>Equipo</h2>
-          <p>Architecto nobis eos vel nam quidem vitae temporibus voluptates qui hic deserunt iusto omnis nam voluptas asperiores sequi tenetur dolores incidunt enim voluptatem magnam cumque fuga.</p>
+            <div class="col-xl-4 col-md-6" data-aos="" data-aos-delay="300">
+              <div class="service-item">
+                <div class="img">
+                  <img src="assets/img/services-22.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="details position-relative">
+                  <div class="icon">
+                    <i class="bi bi-easel"></i>
+
+                  </div>
+                  <a href="#" class="stretched-link">
+                    <h3>Zonas infantiles</h3>
+                  </a>
+                  <p>Debido a la actual pandemia tenemos restringida a un numero de propietarios por tiempos de uso.</p>
+                </div>
+              </div>
+            </div><!-- End Service Item -->
+
+            <div class="col-xl-4 col-md-6" data-aos="" data-aos-delay="200">
+              <div class="service-item">
+                <div class="img">
+                  <img src="assets/img/services-11.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="details position-relative">
+                  <div class="icon">
+                    <i class="bi bi-activity"></i>
+                  </div>
+                  <a href="#" class="stretched-link">
+                    <h3>Alquiler de salón social</h3>
+                  </a>
+                  <p>Recuerda siempre revisar la disponibilidad para tus reuniones</p>
+                </div>
+              </div>
+            </div><!-- End Service Item -->
+
+            <div class="col-xl-4 col-md-6" data-aos="" data-aos-delay="400">
+              <div class="service-item">
+                <div class="img">
+                  <img src="assets/img/services-33.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="details position-relative">
+                  <div class="icon">
+                    <i class="bi bi-broadcast"></i>
+                  </div>
+                  <a href="#" class="stretched-link">
+                    <h3>Reserva del Gym</h3>
+                  </a>
+                  <p>Debido a la actual pandemia tenemos restringida a un numero de propietarios por tiempos de uso.</p>
+                </div>
+              </div>
+            </div><!-- End Service Item -->
+          </div>
         </div>
+      </section><!-- End Services Section -->
 
-        <div class="row gy-5">
 
-          <div class="col-xl-4 col-md-6 d-flex"  data-aos-delay="200">
-            <div class="team-member">
-              <div class="member-img">
-                <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="">
+      <!-- ======= F.A.Q Section ======= -->
+      <section id="faq" class="faq">
+        <div class="container-fluid" data-aos=" ">
+
+          <div class="row gy-4">
+
+            <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
+
+              <div class="content px-xl-5">
+                <h3>Preguntas <strong>Frecuentes</strong></h3>
+                <p>
+                  En este espacio podemos resolver algunas de tu dudas.
+                </p>
               </div>
-              <div class="member-info">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-                <h4>Javier Moya</h4>
-                <span>Director</span>
+
+              <div class="accordion accordion-flush px-xl-5" id="faqlist">
+
+                <div class="accordion-item" data-aos="" data-aos-delay="200">
+                  <h3 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-1">
+                      <i class="bi bi-question-circle question-icon"></i>
+                      ¿Cuales son los horarios de atención?
+                    </button>
+                  </h3>
+                  <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                    <div class="accordion-body">
+                      Los horarios de atención son los siguientes:
+                      - Lunes a Viernes 9:00am a 6:00pm
+                      - Sabados 9:00am a 1:00pm
+                      - Domingos y Festivos no antendemos
+                    </div>
+                  </div>
+                </div><!-- # Faq item-->
+
+                <div class="accordion-item" data-aos="" data-aos-delay="300">
+                  <h3 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-2">
+                      <i class="bi bi-question-circle question-icon"></i>
+                      ¿Qué actividades se pueden realizar en un conjunto residencial?
+                    </button>
+                  </h3>
+                  <div id="faq-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                    <div class="accordion-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">Recoger la basura acumulada.</li>
+                        <li class="list-group-item">Limpiar o pintar las paredes.</li>
+                        <li class="list-group-item">Reparar instalaciones o infraestructuras.</li>
+                        <li class="list-group-item">Quitar la maleza y hacer mantenimiento a la flora.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div><!-- # Faq item-->
+
+                <div class="accordion-item" data-aos="" data-aos-delay="400">
+                  <h3 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-3">
+                      <i class="bi bi-question-circle question-icon"></i>
+                      ¿Qué normas deben cumplir los miembros de un conjunto residencial?
+                    </button>
+                  </h3>
+                  <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                    <div class="accordion-body">
+                      <ul class="list-group">
+                        <li class="list-group-item">No perturbar la tranquilidad de los vecinos.</li>
+                        <li class="list-group-item">Evitar los actos obscenos.</li>
+                        <li class="list-group-item">Respetar a todos los miembros de la propiedad horizontal.</li>
+                        <li class="list-group-item">Pagar oportunamente los cargos asignados.</li>
+                        <li class="list-group-item">Cuidar de las zonas comunes.</li>
+                        <li class="list-group-item">Mantener una buena conducta durante visitas y reuniones.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div><!-- # Faq item-->
+
+                <div class="accordion-item" data-aos="" data-aos-delay="500">
+                  <h3 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-4">
+                      <i class="bi bi-question-circle question-icon"></i>
+                      ¿Quién responde por daños en propiedad horizontal?
+                    </button>
+                  </h3>
+                  <div id="faq-content-4" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                    <div class="accordion-body">
+                      <i class="bi bi-question-circle question-icon"></i>
+                      El artículo 26 de la ley 31 de 2010, establece una obligación para el que ocupe, a cualquier título, una unidad inmobiliaria. Esto significa que la obligación no es solo del dueño, sino de quien se encuentre en ese lugar. Ese ocupante es responsable de los daños y perjuicios causado a terceros, por dolo o negligencia.
+                    </div>
+                  </div>
+                </div><!-- # Faq item-->
+
+                <div class="accordion-item" data-aos="" data-aos-delay="600">
+                  <h3 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-5">
+                      <i class="bi bi-question-circle question-icon"></i>
+                      ¿Dónde se registran los conjuntos residenciales?
+                    </button>
+                  </h3>
+                  <div id="faq-content-5" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                    <div class="accordion-body">
+                    Para que un edificio o conjunto residencial pueda adoptar el régimen de propiedad horizontal se exige la constitución solemne a través de escritura pública registrada en la Oficina de Registro de Instrumentos Públicos, la cual dará vida a la personería jurídica de la comunidad de copropietarios.
+                    </div>
+                  </div>
+                </div><!-- # Faq item-->
+
               </div>
+
             </div>
-          </div><!-- End Team Member -->
 
-          <div class="col-xl-4 col-md-6 d-flex"  data-aos-delay="400">
-            <div class="team-member">
-              <div class="member-img">
-                <img src="assets/img/team/team-2.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="member-info">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-                <h4>Brayan Triana</h4>
-                <span>Gerente</span>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-4 col-md-6 d-flex"  data-aos-delay="600">
-            <div class="team-member">
-              <div class="member-img">
-                <img src="assets/img/team/team-3.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="member-info">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-                <h4>Daniel Barbosa</h4>
-                <span>CTO</span>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
+            <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img" style='background-image: url("assets/img/faq.jpg");'>&nbsp;</div>
+          </div>
 
         </div>
-
-      </div>
-    </section><!-- End Team Section -->
+      </section><!-- End F.A.Q Section -->
 
 
-  </main><!-- End #main -->
-  <!-- ======= Contact Section ======= -->
-  <section id="contact" class="contact">
+    </main><!-- End #main -->
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
       <div class="container">
 
         <div class="section-header">
@@ -405,103 +606,53 @@
 
       </div>
     </section><!-- End Contact Section -->
-    
-  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
 
-    <div class="footer-content">
-      <div class="container">
-        <div class="row">
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
 
-          <div class="col-lg-3 col-md-6">
-            <div class="footer-info">
-              <h3>HeroBiz</h3>
-              <p>
-                A108 Adam Street <br>
-                NY 535022, USA<br><br>
-                <strong>Phone:</strong> +1 5589 55488 55<br>
-                <strong>Email:</strong> info@example.com<br>
-              </p>
+      <div class="footer-legal text-center">
+        <div class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
+
+          <div class="d-flex flex-column align-items-center align-items-lg-start">
+            <div class="copyright">
+              &copy; Copyright <strong><span>HeroBiz</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+              <!-- All the links in the footer should remain intact. -->
+              <!-- You can delete the links only if you purchased the pro version. -->
+              <!-- Licensing information: https://bootstrapmade.com/license/ -->
+              <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/herobiz-bootstrap-business-template/ -->
+              Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
             </div>
           </div>
 
-          <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Graphic Design</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
+          <div class="social-links order-first order-lg-last mb-3 mb-lg-0">
+            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
+            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
           </div>
 
         </div>
       </div>
-    </div>
 
-    <div class="footer-legal text-center">
-      <div class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
+    </footer><!-- End Footer -->
 
-        <div class="d-flex flex-column align-items-center align-items-lg-start">
-          <div class="copyright">
-            &copy; Copyright <strong><span>HeroBiz</span></strong>. All Rights Reserved
-          </div>
-          <div class="credits">
-            <!-- All the links in the footer should remain intact. -->
-            <!-- You can delete the links only if you purchased the pro version. -->
-            <!-- Licensing information: https://bootstrapmade.com/license/ -->
-            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/herobiz-bootstrap-business-template/ -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-          </div>
-        </div>
+    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-        <div class="social-links order-first order-lg-last mb-3 mb-lg-0">
-          <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-          <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-          <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-          <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
-          <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-        </div>
+    <!-- <div id="preloader"></div> -->
 
-      </div>
-    </div>
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
 
-  </footer><!-- End Footer -->
-
-  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-  
-  <!-- <div id="preloader"></div> -->
-  
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
 
 </body>
 

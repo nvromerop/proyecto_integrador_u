@@ -3,94 +3,248 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\Usuario;
+use App\Models\Usuario;
+use App\Models\Estado;
+use App\Models\Rol;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UsuarioController extends Controller
 {
     /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response FK_Usuario_idRolFK
-    */
-   public function index()
-   {
-    return view('auth.index')->with('users',User::paginate(10));
-   }
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response FK_Usuario_idRolFK
+     */
+    public function index(Usuario $usuario)
+    {
+        //Consulta de la tabla 
+        // $usuarios = DB::table('estado as e')
+        //     ->leftJoin('usuario as u', 'e.id_est', '=', 'u.idEstado')
+        //     ->select('*')->get();
 
-   /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-   public function create()
-   {
-       //mostrar el formulario de creacion denuevos usuarios
-       return view('auth.create');
-   }
 
-   /**
-    * Store a newly created resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
-   public function store(\App\Http\Requests\UserStoreRequest $request)
-   {
-    $usuario = new  \App\User();
-    $usuario->name = $request->input('name');
-    $usuario->email =$request->input('email');
-    $usuario->password = Hash::make($request->input('password'));
-    $usuario->save();
-    echo "usuario registrado";
-   }
+        $usuarios = \App\Models\Usuario::paginate(5);
+        $roles = Rol::all();
+        $estados = Estado::all();
+        //mostrar una vista con los empleados
+        //test 2
+        return view('usuario.list')->with("usuarios", $usuarios)->with("roles", $roles)->with("estados", $estados);
+    }
 
-   /**
-    * Display the specified resource.
-    *
-    * @param  \App\Usuario  $usuario
-    * @return \Illuminate\Http\Response
-    */
-   public function show(Usuario $usuario)
-   {
-       return view('auth.show')
-       ->with('usuario',$usuario);
-   }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create(\App\Http\Requests\UserStoreRequest $request)
+    {
 
-   /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  \App\Usuario  $usuario
-    * @return \Illuminate\Http\Response
-    */
-   public function edit(Usuario $rolusuario)
-   {
-    return view('auth.edit')->with('usuario', $usuario);
-   }
+        $estados = Estado::all();
+        $roles = Rol::all();
 
-   /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  \App\Usuario  $usuario
-    * @return \Illuminate\Http\Response
-    */
-   public function update(Request $request, /*Usuario*/ $usuario)
-   {
-       $usuario = Usuario::find($usuario);
-       $usuario->idRol= $request->input('rol');
-       $usuario->save();
-       return redirect("rolusuario")->with('mensaje_exito' , "Rol Asignado correctamente");
-   }
+        return view('usuario.create')->with("roles", $roles)->with("estados", $estados);
+    }
 
-   /**
-    * Remove the specified resource from storage.
-    *
-    * @param  \App\Usuario  $usuario
-    * @return \Illuminate\Http\Response
-    */
-   public function destroy(Usuario $usuario)
-   {
-       //
-   }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $validacion = $request->validate([
+            'primerNombre' => 'required',
+            'primerApellido' => 'required',
+            'tipoDoc' => 'required',
+            'numeroIdentidad' => 'required',
+            'fechaNacimiento' => 'required',
+            'sexo' => 'required',
+            'celular' => 'required',
+            'correo' => 'required',
+            'estado' => 'required',
+            'rol' => 'required'
+        ]);
+
+        if (isset($request->validate) && $request->validate->fails()) {
+            return json_encode($validacion);
+        }
+
+        DB::beginTransaction();
+        try {
+            $usuario = new Usuario([
+                'primerNombre' => $request->get('primerNombre'),
+                'primerApellido' => $request->get('primerApellido'),
+                'tipoDoc' => $request->get('tipoDoc'),
+                'numeroDoc' => $request->get('numeroIdentidad'),
+                'fechaNacimiento' => $request->get('fechaNacimiento'),
+                'sexo' => $request->get('sexo'),
+                'telefono' => $request->get('celular'),
+                'email' => $request->get('correo'),
+                'idEstado' => $request->get('estado'),
+                'idRol' => $request->get('rol'),
+            ]);
+
+            $usuario->save();
+            $idusu = $usuario->id_usu;
+            DB::commit();
+            if ($idusu != NULL) {
+                return json_encode(['success' => '1']);
+            }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $message = $e->getMessage();
+            return json_encode(['error' => $message]);
+        };
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Usuario  $usuario
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Usuario $usuario)
+    {
+        // die(var_dump($usuario->id_usu));
+        // $users = Usuario::find($usuario->id_usu)->first();
+        $users = Usuario::where('id_usu',$usuario->id_usu)->get();
+
+        // die($users);
+        $html = "";
+        if (!empty($users)) {
+            $html = "
+                <tr>
+                    <th>Primer Nombre Residente:</th>
+                    <td>" . $users[0]['primerNombre'] . "</td>
+                </tr>
+                <tr>
+                    <th>Segundo Nombre Residente:</th>
+                    <td>" . $users[0]['segundoNombre'] . "</td>
+                </tr>
+                <tr>
+                    <th>Primer Apellido Residente:</th>
+                    <td>" . $users[0]['primerApellido'] . "</td>
+                </tr>
+                <tr>
+                    <th>Segundo Apellido Residente:</th>
+                    <td>" . $users[0]['segundoApellido'] . "</td>
+                </tr>
+                <tr>
+                    <th>Tipo Documento:</th>
+                    <td>" . $users[0]['tipoDoc'] . "</td>
+                </tr>
+                <tr>
+                    <th>Número Documento:</th>
+                    <td>" . $users[0]['numeroDoc'] . "</td>
+                </tr>
+                <tr>
+                    <th>Fecha Nacimiento:</th>
+                    <td>" . $users[0]['fechaNacimiento'] . "</td>
+                </tr>
+                <tr>
+                    <th>Sexo:</th>
+                    <td>" . $users[0]['sexo'] . "</td>
+                </tr>
+                <tr>
+                    <th>Celular:</th>
+                    <td>" . $users[0]['telefono'] . "</td>
+                </tr>
+                <tr>
+                    <th>Correo:</th>
+                    <td>" . $users[0]['email'] . "</td>
+                </tr>
+            
+           ";
+        }
+        $response['html'] = $html;
+
+        return response()->json($response);
+        // return view('usuario.view', compact('usuario'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Usuario  $usuario
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Usuario $usuario)
+    {
+        //$usuario = Usuario::findOrFail($id_usu);
+        $usuario = DB::table('usuario as u')
+            ->leftJoin('rol as r', 'u.idRol', '=', 'r.id_rol')
+            ->leftJoin('estado as e', 'u.idEstado', '=', 'e.id_est')
+            ->where('u.id_usu', '=', $usuario->id_usu)
+            ->select('*')->get();
+
+            //dd($usuario);
+            return response()->json($usuario);
+        //return view('usuario.edit')->with("usuario", $usuario);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Usuario  $usuario
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Usuario $usuario)
+    {
+    
+        $usuario_id = $request->cid;
+        
+        $validacion = $request->validate([
+            'primNomUpdate' => 'required',
+            'priApeUpdate' => 'required',
+            'telUpdate' => 'required',
+            'emailUpdate' => 'required',
+            'estadoUpdate' => 'required'
+        ]);
+
+        if (isset($request->validate) && $request->validate->fails()) {
+            return json_encode($validacion);
+        }
+
+        DB::beginTransaction();
+        try{
+  
+            $usuario = Usuario::find($usuario_id);
+            $usuario->primerNombre = $request->input("primNomUpdate");
+            $usuario->segundoNombre = $request->input("segNomUpdate");
+            $usuario->primerApellido = $request->input("priApeUpdate");
+            $usuario->segundoApellido = $request->input("segApeUpdate");
+            $usuario->telefono = $request->input("telUpdate");
+            $usuario->email = $request->input("emailUpdate");
+            $usuario->idEstado = $request->input("estadoUpdate");
+            $query = $usuario->update();
+            
+            DB::commit();
+
+    
+            if($query){
+                return json_encode(['success'=>1]);
+            }
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $message = $e->getMessage();
+            return json_encode(['error'=>$message]);
+        };
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int $id_usu
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id_usu)
+    {
+        Usuario::destroy($id_usu);
+        return redirect('/usuarios')->with('destroy', 'Datos eliminados');
+        //echo $id_usu;
+    }
 }
