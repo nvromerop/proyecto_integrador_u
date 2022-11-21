@@ -23,13 +23,18 @@ class VisitanteController extends Controller
     public function index()
     {
 
+        $visitantes = DB::table('visita as v')
+        ->leftJoin('visitante as vs', 'v.idVisitante', '=', 'vs.id_visi')
+        ->leftJoin('apartamento as ap', 'v.idApto', '=', 'ap.id_apto')
+        ->select('*')->paginate(5);
 
-        // $visitantes = Visitante::all();
-        // return view('visitante.list', compact('visitantes',$visitantes));
-        $visitantes = \App\Models\Visitante::paginate(5);
-        //mostrar una vista con los empleados
-        //test 2
-        return view('visitante.list')->with("visitantes", $visitantes);
+    // $visitantes = Visitante::all();
+    // return view('visitante.list', compact('visitantes',$visitantes));
+    // $visitantes = \App\Models\Visitante::paginate(5);
+    //mostrar una vista con los empleados
+    //test 2
+    return view('visitante.list')->with("visitantes", $visitantes);
+    
     }
 
     /**

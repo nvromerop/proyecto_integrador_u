@@ -32,8 +32,9 @@ class LoginController extends Controller
         $user = Auth::getProvider()->retrieveByCredentials($credencials);
         
         //funcion que nos permite un login y crear sesiones
+        //dd($user);
         Auth::login($user);
-
+        $request->session()->put('roleuser', $user->rol);
         return $this->authenticated($request , $user);
     }
 

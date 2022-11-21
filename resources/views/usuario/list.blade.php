@@ -12,6 +12,7 @@
             </div>
             <div class="col-6 col-md-4">
                 <a class="btn btn-success" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userCreateModal">Registro</a>
+                <a href="{{url ('pdfresidente')}}" class="btn btn-info">Generar Reporte</a>
             </div>
         </div>
     </div>
@@ -34,8 +35,8 @@
                     <th>Apellido</th>
                     <th>Tipo Doc</th>
                     <th>N Documento</th>
-                    <th>Estado</th>
                     <th>Actions</th>
+                    <th>Habilitar Residente</th>
                 </tr>
             </thead>
 
@@ -47,7 +48,7 @@
                     <td> {{$usuario->primerApellido}} </td>
                     <td> {{$usuario->tipoDoc }} </td>
                     <td> {{$usuario->numeroDoc }} </td>
-                    <td> {{$usuario->idEstado}} </td>
+                  
                     <!--
                     <td>
                         <option value="{{$usuario['idEstado']}}"> {{$usuario['tipo']}}</option>
@@ -58,9 +59,31 @@
                             <button type="button" class='btn btn-info viewdetails' data-id='{{$usuario->id_usu }}'>Show</button>
                             <button type="button" class="btn btn-warning btn-detail open_modal" value="{{$usuario->id_usu}}">Edit</button>
                             @csrf @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                            <!-- <button type="submit" class="btn btn-danger">Eliminar</button>-->
+                        
                         </form>
                     </td>
+                    <td>
+                                            @switch($usuario->idEstado)
+                                            @case(null)
+                                            <a class="btn btn-secondary" href="{{ url('usuarios/'. $usuario->id_usu . "/habilitar") }}">
+                                                Asignar estado
+                                            </a>
+                                            @break
+                                            @case(1)
+                                            <strong class="text-success">Residente hablilitado</strong>
+                                            <a class="btn btn-secondary" href="{{ url('usuarios/'. $usuario->id_usu . "/habilitar") }}">
+                                                Deshabilitar
+                                            </a>
+                                            @break
+                                            @case(2)
+                                            <strong class="text-danger">Residente deshabilitado</strong>
+                                            <a class="btn btn-secondary" href="{{ url('usuarios/'. $usuario->id_usu . "/habilitar") }}">
+                                                Habilitar
+                                            </a>
+                                            @break
+                                        @endswitch
+                                        </td>
                 </tr>
                 @endforeach
             </tbody>
@@ -85,7 +108,7 @@
                 <h5 class="modal-title" id="exampleModalLabel3">Registrar Residente</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="alert alert-danger d-none" id="errors-modal" >
+            <div class="alert alert-danger d-none" id="errors-modal">
                 <strong>Campos Obligatorios!</strong> Validar los siguientes Campos.<br>
                 <ul id="ul-errors">
                 </ul>
@@ -148,7 +171,7 @@
                     <div class="col mb-0">
                         <label for="estado" class="form-label">Estado: </label>
                         <select class="form-control" id="estado" name="estado" aria-label="">
-                            <option value="" >Seleccione</option>
+                            <option value="">Seleccione</option>
                             <option value="1">Activo</option>
                             <option value="2">Inactivo</option>
                         </select>
@@ -185,12 +208,12 @@
                 <h5 class="modal-title" id="exampleModalLabel3">Actualizar Usuario</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="alert alert-danger d-none" id="errors-modal-update" >
+            <div class="alert alert-danger d-none" id="errors-modal-update">
                 <strong>Campos Obligatorios!</strong> Validar los siguientes Campos.<br>
                 <ul id="ul-errors-update">
                 </ul>
             </div>
-            <form  method="post" action="{{ route('usuario.update') }}" id="update-usuario-form">
+            <form method="post" action="{{ route('usuario.update') }}" id="update-usuario-form">
                 @method('POST')
                 @csrf
                 <input type="hidden" name="cid" id="id_editar">
@@ -219,9 +242,9 @@
                         <div class="col mb-0">
                             <label for="tipoDocUpdate" class="form-label">Tipo Documento</label>
                             <select class="form-select" id="tipoDocUpdate" name="tipoDocUpdate" disabled="true">
-                            <option selected>Seleccione</option>
-                            <option value="TI">TI</option>
-                            <option value="CC">CC</option>
+                                <option selected>Seleccione</option>
+                                <option value="TI">TI</option>
+                                <option value="CC">CC</option>
                             </select>
                         </div>
                         <div class="col mb-0">
@@ -232,7 +255,7 @@
                     <div class="row g-2">
                         <div class="col mb-0">
                             <label for="fecNacUpdate" class="form-label">Fecha Nacimiento</label>
-                            <input type="date" id="fecNacUpdate" name="fecNacUpdate" class="form-control noFilt" readonly/>
+                            <input type="date" id="fecNacUpdate" name="fecNacUpdate" class="form-control noFilt" readonly />
                         </div>
                     </div>
                     <div class="row g-2">
@@ -254,7 +277,7 @@
                     <div class="row g-2">
                         <div class="col mb-0" id="contenedor1">
                             <label for="estadoUpdate" class="form-label">Estado:</label>
-                            <select name="estadoUpdate" id="estadoUpdate" class="form-control" >
+                            <select name="estadoUpdate" id="estadoUpdate" class="form-control">
                                 <option value="">Seleccione</option>
                                 <option value="1">ACTIVO</option>
                                 <option value="2">INACTIVO</option>
@@ -264,7 +287,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                    Close
+                        Close
                     </button>
                     <button type="submit" class="btn btn-success">Guardar</button>
                 </div>

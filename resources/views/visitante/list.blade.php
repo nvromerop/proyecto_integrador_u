@@ -20,6 +20,7 @@
                 <tr>
                     <th>N°</th>
                     <th>Nombre</th>
+                    <th>N° Apartamento</th>
                     <th>Fecha Ingreso</th>
                     <th>Hora Ingreso</th>
                     <th>Hora Salida</th>
@@ -34,6 +35,7 @@
 
                 <td> {{ ++$i }}</td>
                 <td> {{$visitante->primerNombre}}  {{$visitante->primerApellido}} </td>
+                <td> {{$visitante->numeroApto}}  </td>
                 <td> {{$visitante->fechaRegistro}} </td>
                 <td> {{$visitante->horaIngreso}} </td>
                 <td> {{$visitante->horaSalida }} </td>
@@ -279,7 +281,8 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel3">Visualizar Visitante {{ $visitante->fechaReserva }}</h5>
+                {{-- <h5 class="modal-title" id="exampleModalLabel3">Visualizar Visitante {{ $visitante->fechaReserva }}</h5> --}}
+                <h5 class="modal-title" id="exampleModalLabel3">Visualizar Visitante</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             @if ($errors->any())
@@ -305,6 +308,8 @@
 </div>
 <!-- fin show modal -->
 
+
+
 @endsection
 
 @section('content-js')
@@ -313,4 +318,11 @@
     let ruta2 = "{{ route('visitante.show',[':visitanteid']) }}";
 </script>
 <script src="{{ asset('js/visitantes.js') }}"></script>
+
+{{-- vendors --}}
+<script src="{{ asset('plugins/custom/datatables/datatables.bundle.js') }}" type="text/javascript"></script>
+
+{{-- page scripts --}}
+<script src="{{ asset('js/pages/crud/datatables/basic/basic.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
 @endsection

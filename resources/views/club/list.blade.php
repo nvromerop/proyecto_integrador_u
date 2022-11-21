@@ -2,152 +2,80 @@
 
 @section('content')
 
-
-<!-- Bootstrap Table with Header - Dark -->
-<div class="card">
-    <div class="container">
-        <div class="row" style="align-items: center">
-            <div class="col-12 col-md-8">
-                <h5 class="card-header">Club House</h5>
-            </div>
-            <div class="col-6 col-md-4">
-                <a class="btn btn-success" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userCreateModal">Registro</a>
+<div class="container col-md-12">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">    
+    <div class="card-header border-0">
+        <h3 class="card-title fw-bolder text-dark">Agendar Espacio Club House</h3>
+    </div>
+    
+    <div class="card-body pt-2">
+        <div>Para agregar un espacio solo debes hacer click en una fecha.</div><br>
+        <div id="agenda" name="agenda">
+        </div>
+    <!-- Modal -->
+    <div class="modal fade" id="evento" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Datos del Evento</h5>
+                </div>
+                <div class="modal-body">
+                   <form action="" id="formularioEventos" name="formularioEventos">
+                    {{ csrf_field() }}
+                       <div class="form-group d-none">
+                         <label for="id">ID</label>
+                         <input type="text" class="form-control" name="id" id="id" aria-describedby="helpId" placeholder="">
+                         <small id="helpId" class="form-text text-muted">&nbsp;</small>
+                       </div>
+                       <div class="form-group">
+                         <label for="title">Título</label>
+                         <input type="text" class="form-control" name="title" id="title" aria-describedby="helpId" placeholder="" required="required">
+                         <small id="helpId" class="form-text text-muted">&nbsp;</small>
+                       </div>
+                       <div class="form-group">
+                         <label for="descripcion">Descripción</label>
+                         <textarea class="form-control" name="descripcion" id="descripcion" rows="3"></textarea>
+                         <small id="helpId" class="form-text text-muted">&nbsp;</small>
+                       </div>
+                       <div class="row">
+                            <div class="form-group col-md-6">
+                                <input type="date" class="form-control" name="start" id="start" aria-describedby="helpId" placeholder="">
+                                <small id="helpId" class="form-text text-muted">Fecha Inicio</small>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="time" class="form-control" name="startH" id="startH" aria-describedby="helpId" placeholder="">
+                                <small id="helpId" class="form-text text-muted">Hora Inicio</small>
+                            </div>
+                       </div>
+                       <div class="row">
+                            <div class="form-group col-md-6">
+                                <input type="date" class="form-control" name="end" id="end" aria-describedby="helpId" placeholder="">
+                                <small id="helpId" class="form-text text-muted">Fecha Fin</small>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="time" class="form-control" name="endH" id="endH" aria-describedby="helpId" placeholder="">
+                                <small id="helpId" class="form-text text-muted">Hora Fin</small>
+                            </div>
+                       </div>
+                      
+                   </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="btnGuardar">Guardar</button>
+                    <button type="button" class="btn btn-primary" id="btnModificar">Modificar</button>
+                    <button type="button" class="btn btn-danger" id="btnEliminar">Eliminar</button>
+                    <button type="button" class="btn btn-secondary" id="btnCerrar">Cerrar</button>
+                </div>
             </div>
         </div>
     </div>
-    <div class="table-responsive text-nowrap">
-        <table class="table" id='ClubTable'>
-            <thead class="table-dark">
-                <tr>
-                    <th>N°</th>
-                    <th>Nombre</th>
-                    <th>Disponiblidad</th>
-                    <th>Usuario</th>
-                    <th>Fecha Reserva</th>
-                    <th>Hora Reserva</th>
-                    <th>Fin Reserva</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-
-            <tbody class="table-border-bottom-0">
-                @foreach ($clubs as $club)
-
-                <td> {{$club->id_club}} </td>
-                <td> {{$club->nombre}} </td>
-                <td> {{$club->disponibilidad}} </td>
-                <td> {{$club->idUsuario }} </td>
-                <td> {{$club->fechaReserva }} </td>
-                <td> {{$club->horaReserva }} </td>
-                <td> {{$club->finReserva }} </td>
-                <td>
-                    
-                    <form action="{{ route('club.destroy', $club->id_club) }}" method="POST">
-                        <button type="button" class='btn btn-info viewdetails' data-id='{{$club->id_club }}'>Show</button>
-                        <a class="btn btn-primary" href="{{ route('club.edit',$club->id_club) }}" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a>
-
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-
-
-                </td>
-                </tr>
-                @endforeach
-            </tbody>
-                    </table>
-        <div>
-            <!-- TO DO: PONER EL PAGINADOR -->
-            {{$clubs->links('pagination::bootstrap-4') }}
-        </div>
     </div>
-</div>
-<!--/ Bootstrap Table with Header Dark -->
-
-<!-- modal crear -->
-<div class="modal fade" id="userCreateModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel3">Registrar Club</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-
-        </div>
-    </div>
 </div>
 </div>
-<!-- fin modal crear -->
-
-<!-- actualizar modal -->
-<div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel3">Actualizar {{ $club->nombre }}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            @if ($errors->any())
-            <div class="alert alert-danger">
-                <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                <ul>
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
-            <form method="post" action="{{ route('club.update',$club->id_usu) }}" id="hhhhhh">
-                @method('PUT')
-                @csrf
-
-            </form>
-        </div>
-    </div>
 </div>
-<!-- fin actualizar modal -->
 
-
-<!-- show modal -->
-<div class="modal fade" id="viewModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel3">Visualizar Club {{ $club->nombre}}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            @if ($errors->any())
-            <div class="alert alert-danger">
-                <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                <ul>
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
-            <div class="modal-body">
-                <table class="table table-bordered table table-striped table table-hover" id="tblempinfo">
-                    <tbody></tbody>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- fin show modal -->
-
-
-@endsection
-@section('content-js')
-<script>
-    let ruta = "{{ route('club.store') }}";
-    let ruta2 = "{{ route('club.show',[':clubid']) }}";
-</script>
-<script src="{{ asset('js/clubs.js') }}"></script>
 @endsection

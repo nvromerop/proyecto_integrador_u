@@ -247,4 +247,28 @@ class UsuarioController extends Controller
         return redirect('/usuarios')->with('destroy', 'Datos eliminados');
         //echo $id_usu;
     }
+
+    public function habilitar($id_usu){
+        $usuario = Usuario::find($id_usu);
+        switch($usuario->idEstado){
+            case null:
+                $usuario->idEstado=1;
+                $usuario->save();
+                $mensaje_exito = 'Residente Habilitado';
+                break;
+            case 1:
+                $usuario->idEstado=2;
+                $usuario->save();
+                $mensaje_exito = 'Residente Deshabilitado';
+
+                break;
+
+            case 2:
+                $usuario->idEstado=1;
+                $usuario->save();
+                $mensaje_exito = 'Usuario Activado';
+                break;
+        }
+        return redirect('usuarios')->with('mensaje_exito', $mensaje_exito);
+    }
 }

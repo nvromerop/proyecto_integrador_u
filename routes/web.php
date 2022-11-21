@@ -10,7 +10,9 @@ use App\Http\Requests\RegisterRequest;
 use App\Model\User;
 use App\Http\Controllers\VisitanteController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\VehiculoController;
 use App\Http\Controllers\ClubController;
+use App\Http\Controllers\EventoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +63,13 @@ Route::get('/logout' , [LogoutController::class, 'logout']);
 
 
 // rutas para usuarios
+
+Route::resource('usuarios', 'UsuarioController');
+Route::get('usuarios/{usuario}/habilitar' , "UsuarioController@habilitar")->middleware('sesiones');
+Route::get('usuarios/{usuario}/habilitar' , "UsuarioController@habilitar")->middleware('sesiones');
+Route::get('usuarios/{usuario}/habilitar' , "UsuarioController@habilitar");
+
+
 Route::get('/usuarios', [UsuarioController::class, 'index']);
 Route::get('usuarios/create', [UsuarioController::class, 'create'])->name('usuario.create');
 Route::post('usuarios/store', [UsuarioController::class, 'store'])->name('usuario.store');
@@ -86,8 +95,8 @@ Route::get('apartamentos/create', [AptoController::class, 'create'])->name('apar
 Route::post('apartamentos/store', [AptoController::class, 'store'])->name('apartamento.store');
 Route::delete('apartamentos/destroy/{apartamento}', [AptoController::class, 'destroy'])->name('apartamento.destroy');
 Route::get('/apartamentos/view/{apartamento}', [AptoController::class, 'show'])->name('apartamento.show');
-Route::get('/apartamentos/edit/{id_apto}', [AptoController::class, 'edit'])->name('apartamento.edit'); 
-Route::put('apartamentos/update/{id_apto}', [AptoController::class, 'update'])->name('apartamento.update');
+Route::post('/apartamentos/edit/{apartamento}', [AptoController::class, 'edit'])->name('apartamento.edit'); 
+Route::post('apartamentos/update', [AptoController::class, 'update'])->name('apartamento.update');
 
 //Rutas para club house
 Route::get('/clubs', [ClubController::class, 'index']);
@@ -97,3 +106,27 @@ Route::delete('clubs/destroy/{club}', [ClubController::class, 'destroy'])->name(
 Route::get('/clubs/view/{club}', [ClubController::class, 'show'])->name('club.show');
 Route::get('/clubs/edit/{id_club}', [ClubController::class, 'edit'])->name('club.edit'); 
 Route::put('clubs/update', [ClubController::class, 'update'])->name('club.update');
+
+
+//Rutas para vehiculos
+Route::get('/vehiculos', [VehiculoController::class, 'index']);
+Route::get('vehiculos/create', [VehiculoController::class, 'create'])->name('vehiculo.create');
+Route::post('vehiculos/store', [VehiculoController::class, 'store'])->name('vehiculo.store');
+Route::delete('vehiculos/destroy/{vehiculo}', [VehiculoController::class, 'destroy'])->name('vehiculo.destroy');
+Route::get('/vehiculos/view/{vehiculo}', [VehiculoController::class, 'show'])->name('vehiculo.show');
+Route::post('/vehiculos/edit/{vehiculo}', [VehiculoController::class, 'edit'])->name('vehiculo.edit'); 
+Route::post('vehiculos/update', [VehiculoController::class, 'update'])->name('vehiculo.update');
+
+
+Route::group(['middleware' => ['auth']], function(){
+
+    Route::get('/evento', [EventoController::class, 'index']);
+    Route::get('/evento/mostrar', [EventoController::class, 'show']);
+    Route::post('/evento/agregar', [EventoController::class, 'store']);
+    Route::post('/evento/editar/{id}', [EventoController::class, 'edit']);
+    Route::post('/evento/actualizar/{evento}', [EventoController::class, 'update']);
+    Route::post('/evento/borrar/{id}', [EventoController::class, 'destroy']);
+});
+
+//Rutas de pdf
+Route::get('pdfresidente', 'PDFControllerResidente@pdf');

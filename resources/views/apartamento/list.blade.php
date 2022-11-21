@@ -15,8 +15,8 @@
             </div>
         </div>
         <div class="table-responsive text-nowrap">
-            <table class="table table-bordered table table-striped table table-hover">
-                <thead class="table-dark">
+        <table class="table" id='AptoTable'>
+            <thead class="table-dark">
                     <tr>
                     <th>N°</th>
                     <th>Numero Apartamento</th>
@@ -24,6 +24,7 @@
                     <th>Estado</th>
                     <th>Residente</th>
                     <th>Actions</th>
+                    
                     </tr>
                 </thead>
                 @php
@@ -44,18 +45,10 @@
                         @endforeach 
                     </td>
                     <td>
-                        <!-- <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                <i class="bx bx-dots-vertical-rounded"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
-                            </div>
-                        </div> -->
+                        
                         <form action="{{ route('apartamento.destroy', $apartamento->id_apto) }}" method="POST">
-                            <!--<a class="btn btn-info" href="{{ route('apartamento.show',$apartamento->idUsuario) }}" data-bs-toggle="modal" data-bs-target="#viewModal">Show</a>-->
-                            <a class="btn btn-primary" href="{{ route('apartamento.edit',$apartamento->id_apto) }}" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a>
+                            <!--<button type="button" class='btn btn-info viewdetails' data-id='{{$apartamento->id_apto }}'>Show</button>-->
+                            <button type="button" class="btn btn-warning btn-detail open_modal" value='{{$apartamento->id_apto }}'>Edit</button>
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
@@ -73,66 +66,66 @@
     </div>
     <!--/ Bootstrap Table with Header Dark -->
 
+    <!-- Passing BASE URL to AJAX -->
+    <input id="url" type="hidden" value="{{ \Request::url() }}">
+
     <!-- modal crear -->
-    <div class="modal fade" id="largeModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="largeModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel3">Registrar Apartamentos</h5>
+                    <h5 class="modal-title" id="exampleModalLabel3">Registrar Apartamento</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                <form action="{{ route('apartamento.store') }}" method="POST" >
-                @csrf
+                <div class="alert alert-danger d-none" id="errors-modal" >
+                    <strong>Campos Obligatorios!</strong> Validar los siguientes Campos.<br>
+                    <ul id="ul-errors">
+                    </ul>
+                </div>
+                
+                <form action="" id="AptoForm">
+                        @csrf
                     <div class="modal-body">
-                        <div class="row">
+                        <div class="row g-2">
                             <div class="col mb-3">
-                                <label for="numeroApartamento" class="form-label">Numero Apartamento</label>
-                                <input type="number" name="numeroApartamento" id="numeroApartamento" class="form-control" placeholder="Insertar Numero Apartamento" />
+                                <label for="numeroApto" class="form-label">Numero de Apartamento</label>
+                                <input type="number" name="numeroApto" id="numeroApto" class="form-control" placeholder="Numero Apartamento" required/>
+                            </div>
+                            <div class="col mb-3">
+                                <label for="numeroTorre" class="form-label">Numero de Torre</label>
+                                <input type="number" name="numeroTorre" id="numeroTorre" class="form-control noFilt" placeholder="Numero Torre" />
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col mb-3">
-                                <label for="numeroTorre" class="form-label">Numero Torre</label>
-                                <input type="number" id="numeroTorre" name="numeroTorre" class="form-control" placeholder="Insertar Numero Torre" />
-                            </div>
-                        </div>
-                        <div class="row" >
-                            <div class="col mb-3">
-                             <label for="estado" class="form-label">Estado</label>
-                                <select name="estado" id="estado" class="form-control">
-                                    <option>Seleccione</option>
-                                    <option value="Habitado">Habitado</option>
-                                    <option value="No Habitado">No Habitado</option>
+                        <div class="row g-2">
+                            <div class="col mb-0">
+                                <label for="estado" class="form-label">Estado</label>
+                                <select class="form-control" id="estado" name="estado" aria-label="Seleccione el Estado">
+                                <option value="">Seleccione</option>
+                                <option value="Habitado">Habitado</option>
+                                <option value="No Habitado">No Habitado</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="row" >
-                            <div class="col mb-3">
+                        <div class="row g-2">
+                            <div class="col mb-0">
                                 <label for="propietarioApartamento" class="form-label">Propietario Apartamento</label>
-                                <select name="propietarioApartamento" id="propietarioApartamento" class="form-control">
-                                    <option>Seleccione</option>
-                                    @foreach ($usuarios as $usuario)
+                                <select class="form-control" id="propietarioApartamento" name="propietarioApartamento" aria-label="Propietario Apartamento">
+                                <option value="">Seleccione</option>
+                                @foreach ($usuarios as $usuario)
                                     <option value="{{$usuario['id_usu']}}">{{$usuario['tipoDoc']}}{{$usuario['numeroDoc']}} --- {{$usuario['primerNombre']}} {{$usuario['segundoNombre']}} {{$usuario['primerApellido']}} {{$usuario['segundoApellido']}}</option>
-                                    @endforeach
+                                @endforeach
                                 </select>
                             </div>
                         </div>
-
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success">Guardar</button>
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        Close
+                        </button>
+                        <button type="button" class="btn btn-success" id="btnAdd">Guardar</button>
                     </div>
+                    {{-- <div class="modal-footer"><a data-dismiss="modal" class="btn btn-primary" id="btnAdd">Confirm</a></div>  --}}
+
                 </form>
             </div>
         </div>
@@ -147,58 +140,54 @@
                     <h5 class="modal-title" id="exampleModalLabel3">Actualizar Apartamento</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                <form method="post" action="{{ route('apartamento.update',$apartamento->id_apto) }}">
+                <div class="alert alert-danger d-none" id="errors-modal-update" >
+                    <strong>Campos Obligatorios!</strong> Validar los siguientes Campos.<br>
+                    <ul id="ul-errors-update">
+                    </ul>
+                </div>
+                <form method="post" action="{{ route('apartamento.update') }}" id="update-apto-form">
                     @method('PUT')
                     @csrf
+                    <input type="hidden" name="cid" id="id_editar">
                     <div class="modal-body">
-                        <div class="row">
+                        <div class="row g-2">
                             <div class="col mb-3">
-                                <label for="numeroApto" class="form-label">Numero Apartamento:</label>
-                                <input type="number" name="numeroApto" id="numeroApto" class="form-control" placeholder="Insertar Numero Apartamento" value="{{ $apartamento->numeroApto }} " maxlength="4"/>
+                                <label for="numeroAptoNew" class="form-label">Numero de Apartamento</label>
+                                <input type="number" name="numeroAptoNew" id="numeroAptoNew" class="form-control" value="" />
+                            </div>
+                            <div class="col mb-3">
+                                <label for="numeroTorreNew" class="form-label">Numero de Torre</label>
+                                <input type="number" name="numeroTorreNew" id="numeroTorreNew" class="form-control" />
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col mb-3">
-                                <label for="numeroTorre" class="form-label">Numero Apartamento:</label>
-                                <input type="number" name="numeroTorre" id="numeroTorre" class="form-control" placeholder="Insertar Numero Torre" value="{{ $apartamento->numeroTorre }} " maxlength="4"/>
-                            </div>
-                        </div>
-                        <div class="row" >
-                            <div class="col mb-3">
-                             <label for="estado" class="form-label">Estado</label>
-                                <select name="estado" id="estado" class="form-control">
-                                    <option>Seleccione</option>
-                                    <option value="Habitado">Habitado</option>
-                                    <option value="No Habitado">No Habitado</option>
+                        <div class="row g-2">
+                            <div class="col mb-0">
+                                <label for="estadoNew" class="form-label">Estado</label>
+                                <select class="form-select" id="estadoNew" name="estadoNew">
+                                <option>Seleccione</option>
+                                <option value="Habitado">Habitado</option>
+                                <option value="No Habitado">No Habitado</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="row" >
-                            <div class="col mb-3">
-                                <label for="id_usu" class="form-label">Propietario Apartamento</label>
-                                <select name="id_usu" id="id_usu" class="form-control">
-                                    <option>Seleccione</option>
-                                    @foreach ($usuarios as $usuario)
-                                    <option value="{{$usuario['id_usu']}}">{{$usuario['primerNombre']}}</option>
-                                    @endforeach
+                        <div class="row g-2">
+                            <div class="col mb-0">
+                                <label for="proAptoNew" class="form-label">Propietario Apartamento</label>
+                                <select class="form-select" id="proAptoNew" name="proAptoNew" value="{{$usuario['id_usu']}}">
+                                <option>Seleccione</option>
+                                @foreach ($usuarios as $usuario)
+                                    
+                                    <option value="{{$usuario['id_usu']}}">{{$usuario['primerNombre']}} {{$usuario['segundoNombre']}} {{$usuario['primerApellido']}} {{$usuario['segundoApellido']}}</option>
+                                    
+                                @endforeach 
+                                    
+                                
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                        Close
-                        </button>
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-success">Guardar</button>
                     </div>
                 </form>
@@ -207,63 +196,42 @@
     </div>
     <!-- fin editar modal -->
 
-    <!-- ver modal -->
-    
-    
+    <!-- show modal -->
 <div class="modal fade" id="viewModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel3">Visualizar Apartamento</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                    <div class="modal-body">
-                            <table class="table table-bordered table table-striped table table-hover">
-                            @foreach ($apartamentos as $apartamento)
-                                @if($usuario->id_usu == $apartamento->idUsuario)
-                                <tr>
-                                    <th>Numero De Apartamento:</th>
-                                    <td>{{$apartamento->numeroApto}}</td>
-                                </tr>
-
-                                <tr>
-                                    <th>Numero De Torre:</th>
-                                    <td>{{$apartamento->numeroTorre}}</td>
-                                </tr>
-
-                                <tr>
-                                    <th>Estado:</th>
-                                    <td>{{$apartamento->estado}}</td>
-                                </tr>
-                                
-                                <tr>
-                                    
-                                    <th>Residente:</th>
-                                    @foreach ($usuarios as $usuario)
-                                        @if($usuario->id_usu == $apartamento->idUsuario)
-                                            <td> {{$usuario['primerNombre']}}</td>
-                                        @endif
-                                    @endforeach
-                                </tr>
-                                @endif
-                            @endforeach 
-                            </table>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel3">Visualizar Residente {{ $apartamento->numeroApto }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+            <div class="modal-body">
+                <table class="table table-bordered table table-striped table table-hover" id="tblempinfo">
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
-    <!-- fin editar modal -->
+</div>
+<!-- fin show modal -->
+@endsection
+
+@section('content-js')
+<script>
+    let ruta = "{{ route('apartamento.store') }}";
+    let ruta2 = "{{ route('apartamento.show',[':aptoid']) }}";
+</script>
+<script src="{{ asset('js/apartamento.js') }}"></script>
 @endsection
